@@ -1,0 +1,22 @@
+<table border="2" rules="all" width="400" height="300"> 
+    <tr bgcolor="yellow">
+        <th>Sr.No</th>
+        <th>Email</th>
+        <th>User Type</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    <tr ng-repeat="obj in jsonAry">
+            <td>{{$index}}</td>
+            <td>{{obj.email}}</td>
+            <td>{{obj.utype}}</td>
+            <td>{{obj.status}}</td>
+            <td>
+                <input type="button" value="Block" ng-click=doBlock(obj.email,$index);>
+            </td>
+            <td>
+                <input type="button" value="Resume" ng-click=doResume(obj.email,$index);>
+            </td>
+
+    </tr>
+</table>

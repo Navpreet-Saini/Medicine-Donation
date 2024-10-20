@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Document</title>
+    <script src="js/angular.min.js">   </script>
+    <script>
+        var moduleKuch=angular.module("myModule",[]);
+        moduleKuch.controller("myController",function($scope,$http)
+        {
+                //------------------
+                $scope.jsonAry=[];
+                /* = [{
+                    "emailid": "sst@gmail.com",
+                    "pwd": "ancf",
+                    "mobile" : "734783784"
+                },
+                {
+                    emailid: "1bce@gmail.com",
+                    pwd: "ancf",
+                    mobile : "111111"
+                },
+                {
+                    emailid: "2bce@gmail.com",
+                    pwd: "ancf",
+                    mobile : "222222"
+                },
+                {
+                    emailid: "3bce@gmail.com",
+                    pwd: "ancf",
+                    mobile : "3333333"
+                }
+            ];
+            */
+
+            $scope.fetchAllRecords=function()
+            {
+                $http.get("/fetchAllRecords").then(fxSuccess,function(response){
+                        alert(JSON.stringify(response.data));
+                   });
+                   function fxSuccess(response)
+                   {
+                    //alert(JSON.stringify(response.data));
+                    $scope.jsonAry=response.data;
+                   }
+            }
+            //------------------------
+            
+            $scope.doBlock=function(email,index){
+                var url="/profile-block?email="+email;
+                $http.get(url).then(fxSuccess,function(response){
+                    alert(response.data);
+                });
+                function fxSuccess(response){
+                    $scope.fetchAllRecords();
+                }
+            }
+             
+            $scope.doResume=function(email,index){
+                var url="/profile-resume?email="+email;
+                $http.get(url).then(fxSuccess,function(response){
+                    alert(response.data);
+                });
+                function fxSuccess(response){
+                    $scope.fetchAllRecords();
+                }
+            }
+        })
+
+    </script>
+</head>
+<body ng-app="myModule" ng-controller="myController">
+<center>
+    <h3>User List</h3>
+</center>
+<br><br>
+<center>
+<div><button type="button" class="btn btn-info" ng-click=fetchAllRecords();>Fetch All Users</button></div>
+</center>
+<hr>
+<center>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sr.No</th>
+            <th scope="col">Email</th>
+            <th scope="col">User Type</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="obj in jsonAry">
+            <th scope="row" >{{$index}}</th>
+            <td>{{obj.email}}</td>
+            <td>{{obj.utype}}</td>
+            <td>{{obj.status}}</td>
+            <td><button type="button" class="btn btn-danger" ng-click=doBlock(obj.email,$index);>Block</button></td>
+            <td><button type="button" class="btn btn-success" ng-click=doResume(obj.email,$index);>Resume</button></td>
+          </tr>
+</center>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+crossorigin="anonymous"></script>
+</body>
+</html>

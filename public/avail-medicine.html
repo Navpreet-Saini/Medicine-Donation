@@ -1,0 +1,93 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script>
+          function loadFile(ref) {
+            var image = document.getElementById('prev');
+            image.src = URL.createObjectURL(ref.files[0]);
+        };
+    </script>
+    
+  </head>
+  <body>
+    <div class="container">
+        <center>
+            <h1>Post medicine to Donate</h1>
+        </center>
+        <form method="post" class="row g-3" enctype="multipart/form-data">
+           <div class="row mt-1">
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Email</label> 
+                <input type="text" class="form-control" name="txtEmail"  value="bcebTi@hfhf.com" id="txtEmail" >
+              </div>
+              <div class="col-4">
+                <label for="inputAddress" class="form-label">City</label>
+                <input type="text" class="form-control"  id="txtct" name="txtct">
+              </div>
+           </div>
+              <div class="row mt-2">
+                <div class="col-4">
+                  <label for="inputAddress" class="form-label">Medicine Name</label>
+                  <input type="text" class="form-control"  id="txtmed" name="txtmed">
+                </div>
+                <div class="col-4">
+                    <label for="inputState" class="form-label">Packing</label>
+                  <select name="pack" class="form-select">
+                    <option selected >Choose...</option>
+                    <option value="Tablet">Tablet</option>
+                    <option value="Syrup">Syrup</option>
+                    <option value="Sash">Sash</option>
+                    <option value="Tube">Tube</option>
+                    </select>
+                  </div>
+                  <div class="col-4">
+                    <label for="inputAddress" class="form-label">Qty</label>
+                    <input type="text" class="form-control"  id="qty" name="qty">
+                  </div>
+              </div>
+             <div class="row mt-3">
+                <div class="col-4">
+                    <label for="inputAddress" class="form-label">Date</label>
+                    <input type="date" class="form-control"  id="date" name="date">
+                  </div>
+                  <div class="col-4">
+                    <label for="inputAddress" class="form-label">Company</label>
+                    <input type="text" class="form-control"  id="comp" name="comp">
+                  </div>
+             </div>
+
+             <div class="row mt-3">
+                <div class="col-md-6">
+                    <input type="file" name="medpic" accept=".jpg, .jpeg, .png" onchange="loadFile(this);">
+                </div>
+                <div class="col-md-6">
+                    <img id="prev" src="" width="100" height="100" alt="">
+                </div>
+            </div>
+            <div class="row mt-4">
+                <label for="inputAddress" class="form-label">Description</label>
+                    <input type="text-area" rows="4" class="form-control"  id="des" name="des">
+
+            </div>
+                
+                
+                  
+                <div class="col-12">
+                <center>
+                  <input type="submit" formaction="/donate-process" class="btn btn-primary" value="List The Medicine">
+                </center>
+                </div>
+            
+        </form>
+    </div>
+    <a href="needy-med-search.html">Needy Medicine</a>
+    <a href="donor-med-manager.html">Needy Medicine</a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

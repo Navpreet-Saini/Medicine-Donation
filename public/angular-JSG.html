@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/angular.min.js">   </script>
+    <script>
+        var moduleKuch=angular.module("myModule",[]);
+        moduleKuch.controller("myController",function($scope)
+        {
+                $scope.fname="Rajesh Bansal";
+
+                $scope.doJoin=function()
+                {
+                      $scope.full=$scope.fn+" "+$scope.ln;  
+                }
+
+                $scope.months=["Jan","Feb","March","Ap","May","Ju"];
+                //------------------
+                $scope.jsonAry = [{
+                    "emailid": "bce@gmail.com",
+                    "pwd": "ancf",
+                    "mobile" : "734783784"
+                },
+                {
+                    emailid: "1bce@gmail.com",
+                    pwd: "ancf",
+                    mobile : "111111"
+                },
+                {
+                    emailid: "2bce@gmail.com",
+                    pwd: "ancf",
+                    mobile : "222222"
+                },
+                {
+                    emailid: "3bce@gmail.com",
+                    pwd: "ancf",
+                    mobile : "3333333"
+                }
+            ];
+
+            //------------------------
+            $scope.doDelete=function(email,index)
+            {
+                    alert(email+"  "+index);
+                    $scope.jsonAry.splice(index,1)
+            }
+        })
+
+    </script>
+</head>
+<body ng-app="myModule" ng-controller="myController">
+{{fname}}
+<p>
+    <input type="text" ng-model="fname">
+</p>
+    <hr>
+    <p>F.Name <input type="text" ng-model="fn"> </p>
+    <p>F.Name <input type="text" ng-model="ln"> </p>
+    <p>
+        <input type="button" value="Join Now" ng-click="doJoin();">
+    </p>
+    <p>
+        full Name= <input type="text" ng-model="full">
+    </p>
+<hr>
+Select month:
+<select>
+    <option ng-repeat="x in months" value={{x}}>{{x}}</option>
+</select>
+    
+<hr>
+<center>
+    <table border="1" rules="all" width="400" height="300"> 
+        <tr bgcolor="yellow">
+            <th>Sr.No</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Mobile</th>
+            <th>
+                Delete
+            </th>
+        </tr>
+        <tr ng-repeat="obj in jsonAry">
+                <td>{{$index}}</td>
+                <td>{{obj.emailid}}</td>
+                <td>{{obj.pwd}}</td>
+                <td>{{obj.mobile}}</td>
+                <td>
+                    <input type="button" value="Delete" ng-click=doDelete(obj.emailid,$index);>
+                </td>
+
+        </tr>
+    </table>
+</center>
+</body>
+</html>
